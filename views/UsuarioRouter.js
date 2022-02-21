@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 // const auth = require("../middlewares/auth");
-// const UsuarioController = require('../controllers/UsuarioController');
+const UsuarioController = require('../controllers/UsuarioController');
 
-//AQUI ES DONDE CREAMOS LOS ENPOINTS DE LAS FUNCIONES DE USUARIOCONTROLLER.
+//AQUI ES DONDE CREAMOS LAS RUTAS DE LAS FUNCIONES DE USUARIOCONTROLLER.
 
 // Endpoint de Alta de usuario ( C )
 // Endpoint de Perfil ( R )
@@ -12,6 +12,23 @@ const router = express.Router();
 // Endpoint de Login de usuario
 // Uso de JWT TOKEN
 // Distintos roles: ADMINISTRADOR y CLIENTE
+
+// Endpoint de Alta de usuario ( C )
+// Registro
+router.post('/registro', UsuarioController.registraUsuario);
+// http://localhost:5000/usuarios/registro
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
