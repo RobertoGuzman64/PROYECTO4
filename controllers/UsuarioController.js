@@ -1,8 +1,8 @@
-
-// const { Usuario } = require('../models/index');
-// const bcrypt = require('bcrypt');
-// const authConfig = require('../config/auth');
-// const jwt = require('jsonwebtoken');
+const { Usuario } = require('../models/index');
+const { Op } = require("sequelize");
+const bcrypt = require('bcrypt');
+const authConfig = require('../config/auth');
+const jwt = require('jsonwebtoken');
 const UsuarioController = {};
 
 //FUNCIONES DEL CONTROLADOR DE USUARIOS.
@@ -17,32 +17,54 @@ const UsuarioController = {};
 // Función de Alta de usuario ( C )
 UsuarioController.registraUsuario = async (req, res) => {
     //Registrando un usuario
-    try {
-        let name = req.body.name;
-        let age = req.body.age;
-        let surname = req.body.surname;
-        let nickname = req.body.nickname;
+        let nombre = req.body.nombre;
+        let edad = req.body.edad;
+        let apellidos = req.body.apellidos;
+        let nick = req.body.nick;
         let email = req.body.email;
-        console.log("antes de encriptar",req.body.password);
-        let password = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds)); 
-        console.log("este es el password", password);
+        let rol = req.body.rol;
+        console.log("antes de encriptar",req.body.contraseña);
+        let contraseña = bcrypt.hashSync(req.body.contraseña, Number.parseInt(authConfig.rounds)); 
+        console.log("esta es la contraseña", contraseña);
         //Comprobación de errores.....
-        //Guardamos en sequelize el usuario
-        Usuario.create({
-            name: name,
-            age: age,
-            surname: surname,
-            email: email,
-            password: password,
-            nickname: nickname
-        }).then(usuario => {
-            res.send(`${usuario.name}, bienvenida a este infierno`);
+        // Guardamos en sequelize el usuario
+        Usuario.findAll({
+            where : {
+                [Op.or] : [
+                    {
+                        email : {
+                            [Op.like] : email
+                        }
+                    },
+                    {
+                        nick : {
+                            [Op.like] : nick
+                        }
+                    }
+                ]
+            }
+        }).then(datosRepetidos => {
+            if(datosRepetidos == 0){
+                    Usuario.create({
+                    nombre: nombre,
+                    edad: edad,
+                    apellidos: apellidos,
+                    email: email,
+                    contraseña: contraseña,
+                    nick: nick,
+                    rol: rol,
+                }).then(usuario => {
+                    res.send(`${usuario.nombre}, bienvenid@ a este VideoClub`);
+                })
+                .catch((error) => {
+                    res.send(error);
+                });
+            }else {
+                res.send("El usuario con ese e-mail ya existe en nuestra base de datos");
+            }
+        }).catch(error => {
+            res.send(error)
         });
-    } catch (error) {
-        res.send(error);
-    }
-    
 };
-
 
 module.exports = UsuarioController;

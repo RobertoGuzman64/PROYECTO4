@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-// const db = require('./db.js');
+const db = require('./db.js');
 const PORT = 5000;
 const router = require('./router');
 
@@ -16,11 +16,11 @@ app.use(express.json()); //PUEDO OBTENER JSON DEL BODY
 app.use(cors(opcionesCors));  //USO CORS
 app.use(router);
 
-app.listen(PORT, ()=> console.log(`Servidor levantado en el puerto ${PORT}`));
-// db.then(()=>{
-//     app.listen(PORT, ()=> console.log(`Servidor en el puerto ${PORT}`)); //Conectado a la base de datos
-// })
-// .catch((err)=> console.log(err.message));
+// app.listen(PORT, ()=> console.log(`Servidor levantado en el puerto ${PORT}`));
+db.then(()=>{
+    app.listen(PORT, ()=> console.log(`Servidor en el puerto ${PORT}`)); //Conectado a la base de datos
+})
+.catch((err)=> console.log(err.message));
 
 
 // Reto Backend Movies. API
