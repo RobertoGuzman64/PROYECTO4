@@ -16,7 +16,7 @@ const UsuarioController = {};
 
 // Función de Alta de usuario ( C )
 UsuarioController.registraUsuario = async (req, res) => {
-    //Registrando un usuario
+    // Registrando un usuario
         let nombre = req.body.nombre;
         let edad = req.body.edad;
         let apellidos = req.body.apellidos;
@@ -26,7 +26,7 @@ UsuarioController.registraUsuario = async (req, res) => {
         console.log("antes de encriptar",req.body.contraseña);
         let contraseña = bcrypt.hashSync(req.body.contraseña, Number.parseInt(authConfig.rounds)); 
         console.log("esta es la contraseña", contraseña);
-        //Comprobación de errores.....
+        // Comprobación de errores.....
         // Guardamos en sequelize el usuario
         Usuario.findAll({
             where : {
@@ -66,5 +66,37 @@ UsuarioController.registraUsuario = async (req, res) => {
             res.send(error)
         });
 };
+
+// Endpoint de Perfil
+UsuarioController.perfilUsuario = async (req, res) => {
+    let datos = req.body;
+    let id = req.params.id;
+    try {
+        Usuario.update(datos, {
+            where: {id : id}
+        })
+        .then(actualizado => {
+            res.send(actualizado);
+        });
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = UsuarioController;
