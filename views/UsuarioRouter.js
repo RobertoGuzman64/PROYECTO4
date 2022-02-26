@@ -13,17 +13,40 @@ const UsuarioController = require('../controllers/UsuarioController');
 // Uso de JWT TOKEN
 // Distintos roles: ADMINISTRADOR y CLIENTE
 
-// Endpoint de Alta de usuario
+// Endpoint de Alta de usuario (Registro).
 router.post('/registro', UsuarioController.registraUsuario);
 // http://localhost:5000/usuarios/registro
 
 
-// Endpoint de Perfil ( R )
+// Endpoint de Modificar el perfil.
 router.put('/:id', UsuarioController.perfilUsuario);
 // http://localhost:5000/usuarios/:id
 
 
-// Endpoint de Baja de usuario
+// Endpoint de eliminar un usuario por ID.
+router.delete('/:id', UsuarioController.borrarPorId);
+// http://localhost:5000/usuarios/:id
+
+
+// Endpoint de Login de usuario
+
+
+
+// Uso de JWT TOKEN
+
+
+
+// Distintos roles: ADMINISTRADOR y CLIENTE
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -83,10 +83,33 @@ UsuarioController.perfilUsuario = async (req, res) => {
     }
 }
 
-// Función de dar de Baja un usuario.
+// Función de dar de Baja un usuario dado su número ID.
+UsuarioController.borrarPorId = async(req, res) => {
+    let id = req.params.id;
+    try{
+        Usuario.destroy({
+            where : { id : id },
+            truncate : false
+        })
+        .then(usuarioBorrado =>{
+            console.log(usuarioBorrado);
+            res.send(`El usuario con la id ${id} ha sido eliminado`);
+        })
+    } catch(error){
+        res.send (error);
+    }
+}
+
+// Endpoint de Login de usuario
 
 
 
+
+// Uso de JWT TOKEN
+
+
+
+// Distintos roles: ADMINISTRADOR y CLIENTE
 
 
 
