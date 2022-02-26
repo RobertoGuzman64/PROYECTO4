@@ -12,6 +12,21 @@ const PedidosController = require('../controllers/PedidosController');
 // Endpoint de ciudades disponibles.
 // Endpoint muestra los pedidos.
 
-router.post('/', PedidosController.placeNewOrder);
+
+// Endpoint crear un pedido
+router.post('/', PedidosController.realizarPedidos);
+////http://localhost:5000/
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

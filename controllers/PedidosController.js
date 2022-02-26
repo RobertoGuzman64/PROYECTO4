@@ -1,4 +1,5 @@
-
+const res = require('express/lib/response');
+const { Order } = require('../models/index');
 const PedidosController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PEDIDOS.
@@ -10,7 +11,25 @@ const PedidosController = {};
 // Endpoint de ciudades disponibles.
 // Endpoint muestra los pedidos.
 
-PedidosController.placeNewOrder = () => {
+// Función de crear pedidos.
+PedidosController.realizarPedidos = () => {
+    let body = req.body;
+    Pedido.create({
+        precio: body.precio,
+        peliculaId: body.peliculaId,
+        usuarioId: body.usuarioId,
+        fecha: body.fecha
+    })
+    .then(pedido => {
+        if(pedido){
+            res.send(pedido)
+        }else{
+            res.send("El nuevo pedido no se a podido realizar");
+        }
+    })
+    .catch((error =>{
+        res.send(error)
+    }))
 }
 
 
