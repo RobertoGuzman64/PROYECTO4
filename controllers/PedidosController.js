@@ -1,5 +1,5 @@
 const res = require('express/lib/response');
-const { Order } = require('../models/index');
+const { Pedido } = require('../models/index');
 const PedidosController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PEDIDOS.

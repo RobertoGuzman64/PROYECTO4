@@ -1,17 +1,11 @@
 
 const { default: axios } = require("axios");
 const { Pelicula } = require('../models/index');
-const { Op} = require("sequelize");
+const { Op } = require("sequelize");
 const { compareSync } = require("bcrypt")
 const PeliculasController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PELICULAS.
-
-// Endpoint busqueda titulo
-// Endpoint busqueda id
-// Endpoint todas las peliculas
-// Endpoint filtrar por género
-// Endpoint filtrar por actores
 
 // Este endpoint trae los datos de una película si introducimos su titulo.
 PeliculasController.peliculasTitulo = async (req, res) => {
