@@ -35,9 +35,6 @@ router.post('/login', UsuarioController.loginUsuario);
 
 
 // Uso de JWT TOKEN
-
-
-
 // Distintos roles: ADMINISTRADOR y CLIENTE
 
 

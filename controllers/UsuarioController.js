@@ -129,12 +129,7 @@ UsuarioController.loginUsuario = (req, res) => {
     })
 }
 
-
-
 // Uso de JWT TOKEN
-
-
-
 // Distintos roles: ADMINISTRADOR y CLIENTE
 
 
