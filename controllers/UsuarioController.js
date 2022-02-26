@@ -67,9 +67,9 @@ UsuarioController.registraUsuario = async (req, res) => {
         });
 };
 
-// Endpoint de Perfil
+// Función de editar el Perfil.
 UsuarioController.perfilUsuario = async (req, res) => {
-    let datos = req.body;
+    // let datos = req.body;
     let id = req.params.id;
     try {
         Usuario.update(datos, {
@@ -82,6 +82,8 @@ UsuarioController.perfilUsuario = async (req, res) => {
         res.send(error);
     }
 }
+
+// Función de dar de Baja un usuario.
 
 
 

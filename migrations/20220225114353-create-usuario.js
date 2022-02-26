@@ -10,6 +10,8 @@ module.exports = {
       },
       nombre: {
         type: Sequelize.STRING,
+        //Este valor puede ser nulo
+        allowNull: false
       },
       edad: {
         type: Sequelize.INTEGER
@@ -19,6 +21,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        allowNull: false,
         unique: true
       },
       contraseña: {
