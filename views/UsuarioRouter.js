@@ -19,12 +19,12 @@ router.post('/registro', UsuarioController.registraUsuario);
 
 
 // Endpoint de Modificar el perfil.
-router.put('/:id', UsuarioController.perfilUsuario);
+router.put('/:id', auth, UsuarioController.perfilUsuario);
 // http://localhost:5000/usuarios/:id
 
 
 // Endpoint de eliminar un usuario por ID.
-router.delete('/:id', UsuarioController.borrarPorId);
+router.delete('/:id', auth, UsuarioController.borrarPorId);
 // http://localhost:5000/usuarios/:id
 
 

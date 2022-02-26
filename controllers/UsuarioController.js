@@ -7,14 +7,14 @@ const UsuarioController = {};
 
 //FUNCIONES DEL CONTROLADOR DE USUARIOS.
 
-// Endpoint de Alta de usuario ( C )
-// Endpoint de Perfil ( R )
-// Endpoint de Baja de usuario ( D )
+// Endpoint de Alta de usuario
+// Endpoint de Perfil
+// Endpoint de Baja de usuario
 // Endpoint de Login de usuario
 // Uso de JWT TOKEN
 // Distintos roles: ADMINISTRADOR y CLIENTE
 
-// Función de Alta de usuario ( C )
+// Función de Alta de usuario
 UsuarioController.registraUsuario = async (req, res) => {
     // Registrando un usuario
         let nombre = req.body.nombre;
@@ -128,8 +128,6 @@ UsuarioController.loginUsuario = (req, res) => {
         res.send(error);
     })
 }
-
-// Uso de JWT TOKEN
 // Distintos roles: ADMINISTRADOR y CLIENTE
 
 
