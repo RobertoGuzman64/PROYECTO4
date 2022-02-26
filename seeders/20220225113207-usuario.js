@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const authConfig = require('../config/auth');
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('usuarios', [
       {"nombre":"Frannie Milvarnie","email":"fmilvarnie0@trellian.com","edad": 18, "contraseña":bcrypt.hashSync("1234", Number.parseInt(authConfig.rounds)),"rol":1,"apellidos":"Albacete", "nick": "administrador", "createdAt":"2021-10-27","updatedAt":"2021-10-27"},
       {"nombre":"Nowell Davidofski","email":"ndavidofski1@aol.com","edad": 22, "contraseña":bcrypt.hashSync("1234", Number.parseInt(authConfig.rounds)),"rol":false,"apellidos":"Valencia", "nick": "usuario", "createdAt":"2021-10-27","updatedAt":"2021-10-27"},
