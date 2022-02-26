@@ -101,7 +101,33 @@ UsuarioController.borrarPorId = async(req, res) => {
 }
 
 // Endpoint de Login de usuario
-
+UsuarioController.loginUsuario = (req, res) => {
+    let correo = req.body.email;
+    let contraseña = req.body.contraseña;
+    Usuario.findOne({
+        where : {email : correo}
+    }).then(Usuario =>{
+        if(!Usuario){
+            res.send("Usuario o contraseña incorrecto");
+        }else {
+            // El Usuario existe, por lo tanto, vamos a comprobar si la contraseña es correcta.
+            if (bcrypt.compareSync(contraseña, Usuario.contraseña)) {
+                console.log(Usuario.contraseña);
+                let token = jwt.sing({ usuario : Usuario}, authConfig.secret,{
+                    expiresIn : authConfig.expires
+                });
+                res.json({
+                    usuario : Usuario,
+                    token : token
+                })
+            }else {
+                res.status(401).json({ msg : "Usuario o contraseña incorrecto"});
+            }
+        }
+    }).catch(error =>{
+        res.send(error);
+    })
+}
 
 
 

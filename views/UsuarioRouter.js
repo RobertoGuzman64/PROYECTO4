@@ -29,6 +29,8 @@ router.delete('/:id', UsuarioController.borrarPorId);
 
 
 // Endpoint de Login de usuario
+router.post('/login', UsuarioController.loginUsuario);
+// http://localhost:5000/usuarios/login
 
 
 
