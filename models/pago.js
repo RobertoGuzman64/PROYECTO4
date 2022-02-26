@@ -5,14 +5,17 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Pago extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * Método auxiliar para definir asociaciones.
+     * Este método no forma parte del ciclo de vida de Sequelize.
+     * El archivo `models/index` llamará a este método automáticamente.
      */
     static associate(models) {
-      // define association here
+      // definir asociación aquí.
+      this.belongsTo(models.Usuario, {
+        foreignKey: 'usuarioId'
+      });
     }
-  }
+  };
   Pago.init({
     tarjeta: DataTypes.STRING,
     paypal: DataTypes.STRING,
