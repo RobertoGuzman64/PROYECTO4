@@ -7,14 +7,7 @@ const UsuarioController = {};
 
 //FUNCIONES DEL CONTROLADOR DE USUARIOS.
 
-// Endpoint de Alta de usuario
-// Endpoint de Perfil
-// Endpoint de Baja de usuario
-// Endpoint de Login de usuario
-// Uso de JWT TOKEN
-// Distintos roles: ADMINISTRADOR y CLIENTE
-
-// Función de Alta de usuario
+// Función de registro de usuario.
 UsuarioController.registraUsuario = async (req, res) => {
     // Registrando un usuario
         let nombre = req.body.nombre;
@@ -100,7 +93,7 @@ UsuarioController.borrarPorId = async(req, res) => {
     }
 }
 
-// Endpoint de Login de usuario
+// Función de Login de usuario
 UsuarioController.loginUsuario = (req, res) => {
     let correo = req.body.email;
     let contraseña = req.body.contraseña;
@@ -128,10 +121,75 @@ UsuarioController.loginUsuario = (req, res) => {
         res.send(error);
     })
 }
-// Distintos roles: ADMINISTRADOR y CLIENTE
 
+// Función de motrar listado de todos los Usuarios registrados. //
+UsuarioController.verTodos = (req, res) => {
+    if (req.user.usuario.rol == "administrador") {//COMPROBAMOS SI ESTÁ LOGADO COMO ADMINISTRADOR
+        Usuario.findAll()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+            message:
+            err.message || "Ha surgido algún error al intentar acceder a los usuarios."
+            });
+        });
+    }else{
+    res.send({
+        message: `No tienes permisos para visualizar a todos los usuarios. Contacta con un administrador.`
+    });
+    }
+};
 
+// Funcion de busqueda de un Usuario por ID.
+  UsuarioController.verPorId = (req, res) => {
+    const id = req.params.id;
+    if (req.user.usuario.rol == "administrador" || req.user.usuario.id == id) {// HACEMOS QUE SOLO PUEDA VERLO EL ADMINISTRADOR O EL USUARIO DUEÑO DEL PERFIL
+        Usuario.findByPk(id)
+            .then(data => {
+                if (data) {
+                    res.send(data);
+                } else {
+                    res.status(404).send({
+                        message: `No se puede encontrar el usuario con el id ${id}.`
+                    });
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: "Ha surgido algún error al intentar acceder al usuario con el id " + id
+                });
+            });
+    }else{
+    res.send({
+        message: `No tienes permisos para acceder al perfil indicado.`
+    });
+    }
+};
 
+// Funcion de borrar todos los Usuarios.
+UsuarioController.deleteAll = (req, res) => {
+    if (req.user.usuario.rol == "administrador") {// HACEMOS QUE SOLO PUEDA BORRARLO EL ADMINISTRADOR
+                usuario.destroy({
+                where: {},
+                truncate: false
+                })
+                .then(nums => {
+                    res.send({ message: `Se han borrado ${nums} usuarios de la base de datos` });
+                })
+                .catch(err => {
+                    res.status(500).send({
+                    message:
+                        err.message || "Ha surgido algún error al intentar eliminar a los usuarios."
+                    });
+                });
+    }else{
+    res.send({
+        message: `No tienes permisos para borrar usuarios. Contacta con un administrador.`
+    });
+    }
+};
 
 
 

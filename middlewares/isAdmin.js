@@ -1,5 +1,7 @@
 const { Usuario } = require('../models/index');
 
+// Función de Administrador.
+
 module.exports = (req, res, next) => {
     let id = req.body.id;
     Usuario.findOne({
