@@ -122,75 +122,37 @@ UsuarioController.loginUsuario = (req, res) => {
     })
 }
 
-// Función de motrar listado de todos los Usuarios registrados. //
+// Función de mostrar listado de todos los Usuarios registrados.
 UsuarioController.verTodos = (req, res) => {
-    if (req.user.usuario.rol == "administrador") {//COMPROBAMOS SI ESTÁ LOGADO COMO ADMINISTRADOR
-        Usuario.findAll()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-            message:
-            err.message || "Ha surgido algún error al intentar acceder a los usuarios."
-            });
-        });
-    }else{
-    res.send({
-        message: `No tienes permisos para visualizar a todos los usuarios. Contacta con un administrador.`
+    Usuario.findAll()
+    .then(data => {
+        res.send(data)
     });
-    }
 };
 
 // Funcion de busqueda de un Usuario por ID.
-  UsuarioController.verPorId = (req, res) => {
-    const id = req.params.id;
-    if (req.user.usuario.rol == "administrador" || req.user.usuario.id == id) {// HACEMOS QUE SOLO PUEDA VERLO EL ADMINISTRADOR O EL USUARIO DUEÑO DEL PERFIL
-        Usuario.findByPk(id)
-            .then(data => {
-                if (data) {
-                    res.send(data);
-                } else {
-                    res.status(404).send({
-                        message: `No se puede encontrar el usuario con el id ${id}.`
-                    });
-                }
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: "Ha surgido algún error al intentar acceder al usuario con el id " + id
-                });
-            });
-    }else{
-    res.send({
-        message: `No tienes permisos para acceder al perfil indicado.`
+UsuarioController.verPorId = (req, res) => {
+    //Búsqueda buscando una Id
+    Pelicula.findByPk(req.params.id)
+    .then(data => {
+        res.send(data)
     });
-    }
 };
 
 // Funcion de borrar todos los Usuarios.
-UsuarioController.deleteAll = (req, res) => {
-    if (req.user.usuario.rol == "administrador") {// HACEMOS QUE SOLO PUEDA BORRARLO EL ADMINISTRADOR
-                usuario.destroy({
-                where: {},
-                truncate: false
-                })
-                .then(nums => {
-                    res.send({ message: `Se han borrado ${nums} usuarios de la base de datos` });
-                })
-                .catch(err => {
-                    res.status(500).send({
-                    message:
-                        err.message || "Ha surgido algún error al intentar eliminar a los usuarios."
-                    });
-                });
-    }else{
-    res.send({
-        message: `No tienes permisos para borrar usuarios. Contacta con un administrador.`
-    });
+UsuarioController.borrarTodo = async (req, res) => {
+    try {
+        Usuario.destroy({
+            where : {},
+            truncate : false
+        })
+        .then(usuariosEliminados => {
+            res.send(`Se han eliminado ${usuariosEliminados} usuarios`);
+        })
+    } catch (error) {
+        res.send(error);
     }
 };
-
 
 
 

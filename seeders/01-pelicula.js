@@ -14,7 +14,6 @@ module.exports = {
       {"titulo":"Lipton Cockton in the Shadows of Sodoma","sinopsis":"Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.","adultos":true,"popularidad":6.4,"imagen":"http://dummyimage.com/249x100.png/5fa2dd/ffffff","fecha":"2021-07-05 20:45:20","createdAt":"2021-05-16 12:44:01","updatedAt":"2021-03-05 16:24:50"},
   ], {});
   },
-
   async down (queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.

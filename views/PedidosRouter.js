@@ -1,32 +1,22 @@
 
 const express = require('express');
 const router = express.Router();
+const auth = require("../middlewares/auth");
 const PedidosController = require('../controllers/PedidosController');
 
 //AQUI ES DONDE CREAMOS LOS ENDPOINTS DE LAS FUNCIONES DE PEDIDOSCONTROLLER.
 
-// Endpoint crear un pedido
-// Endpoint de 1 película por usuario
-// Endpoint con fecha de alquiler
-// Endpoint con fecha de devolución
-// Endpoint de ciudades disponibles.
-// Endpoint muestra los pedidos.
+// Endpoint de realizar un pedido.
+router.post('/', auth, PedidosController.realizarPedidos);
+////http://localhost:5000/pedidos
 
 
-// Endpoint crear un pedido
-router.post('/', PedidosController.realizarPedidos);
-////http://localhost:5000/
+// Endpoint de mostrar los Pedidos realizados.
+router.get('/', auth, PedidosController.mostrarPedidos);
+////http://localhost:5000/pedidos
 
-
-
-
-
-
-
-
-
-
-
-
+// Endpoint de eliminar Pedidos por ID.
+router.delete('/:id', PedidosController.borrarPorId);
+// http://localhost:5000/pedidos/:id
 
 module.exports = router;

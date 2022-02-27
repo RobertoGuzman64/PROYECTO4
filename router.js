@@ -8,6 +8,6 @@ const PedidosRouter = require('./views/PedidosRouter');
 
 router.use('/usuarios', UsuarioRouter);
 router.use('/peliculas', PeliculasRouter);
-router.use('/orders', PedidosRouter);
+router.use('/pedidos', PedidosRouter);
 
 module.exports = router;

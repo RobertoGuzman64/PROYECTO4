@@ -10,14 +10,6 @@ const UsuarioController = require('../controllers/UsuarioController');
 router.post('/registro', UsuarioController.registraUsuario);
 // http://localhost:5000/usuarios/registro
 
-// Endpoint de Modificar el perfil por ID.
-router.put('/:id', auth, UsuarioController.perfilUsuario);
-// http://localhost:5000/usuarios/:id
-
-// Endpoint de eliminar un Usuario por ID.
-router.delete('/:id', auth, UsuarioController.borrarPorId);
-// http://localhost:5000/usuarios/:id
-
 // Endpoint de Login de Usuario.
 router.post('/login', UsuarioController.loginUsuario);
 // http://localhost:5000/usuarios/login
@@ -30,11 +22,17 @@ router.get('/', auth, UsuarioController.verTodos);
 router.get('/:id', auth, UsuarioController.verPorId);
 // http://localhost:5000/usuarios/id
 
+// Endpoint de Modificar el perfil por ID.
+router.put('/:id', auth, UsuarioController.perfilUsuario);
+// http://localhost:5000/usuarios/:id
+
 // Endpoint de borrar todos los Usuarios.
 router.delete('/', auth, UsuarioController.borrarTodo);
 // http://localhost:5000/usuarios/
 
-
+// Endpoint de eliminar un Usuario por ID.
+router.delete('/:id', auth, UsuarioController.borrarPorId);
+// http://localhost:5000/usuarios/:id
 
 
 
