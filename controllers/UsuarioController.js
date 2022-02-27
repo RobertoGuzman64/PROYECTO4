@@ -74,7 +74,7 @@ UsuarioController.perfilUsuario = async (req, res) => {
     } catch (error) {
         res.send(error);
     }
-}
+};
 
 // Función de dar de Baja un usuario dado su número ID.
 UsuarioController.borrarPorId = async(req, res) => {
@@ -91,36 +91,38 @@ UsuarioController.borrarPorId = async(req, res) => {
     } catch(error){
         res.send (error);
     }
-}
+};
 
 // Función de Login de usuario
+
 UsuarioController.loginUsuario = (req, res) => {
     let correo = req.body.email;
     let contraseña = req.body.contraseña;
     Usuario.findOne({
         where : {email : correo}
-    }).then(Usuario =>{
+    }).then(Usuario => {
         if(!Usuario){
-            res.send("Usuario o contraseña incorrecto");
+            res.send("Usuario o contraseña inválido");
         }else {
-            // El Usuario existe, por lo tanto, vamos a comprobar si la contraseña es correcta.
-            if (bcrypt.compareSync(contraseña, Usuario.contraseña)) {
+            //el usuario existe, por lo tanto, vamos a comprobar
+            //si el password es correcto
+            if (bcrypt.compareSync(contraseña, Usuario.contraseña)) { //COMPARA CONTRASEÑA INTRODUCIDA CON CONTRASEÑA GUARDADA, TRAS DESENCRIPTAR
                 console.log(Usuario.contraseña);
-                let token = jwt.sing({ usuario : Usuario}, authConfig.secret,{
-                    expiresIn : authConfig.expires
+                let token = jwt.sign({ usuario: Usuario }, authConfig.secret, {
+                    expiresIn: authConfig.expires
                 });
                 res.json({
-                    usuario : Usuario,
-                    token : token
+                    usuario: Usuario,
+                    token: token
                 })
-            }else {
-                res.status(401).json({ msg : "Usuario o contraseña incorrecto"});
+            } else {
+                res.status(401).json({ msg: "Usuario o contraseña inválidos" });
             }
-        }
-    }).catch(error =>{
+        };
+    }).catch(error => {
         res.send(error);
     })
-}
+};
 
 // Función de mostrar listado de todos los Usuarios registrados.
 UsuarioController.verTodos = (req, res) => {

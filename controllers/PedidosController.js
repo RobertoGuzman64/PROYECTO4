@@ -7,7 +7,7 @@ const PedidosController = {};
 //FUNCIONES DEL CONTROLADOR DE PEDIDOS.
 
 // Función de crear pedidos.
-PedidosController.realizarPedidos = () => {
+PedidosController.realizarPedidos = (req, res) => {
     let body = req.body;
     Pedido.create({
         precio: body.precio,
@@ -29,7 +29,7 @@ PedidosController.realizarPedidos = () => {
 
 // Función de mostrar todos los Pedidos realizados.
 PedidosController.mostrarPedidos = (req, res) => {
-    Pelicula.findAll()
+    Pedido.findAll()
     .then(data => {
         res.send(data)
     });
