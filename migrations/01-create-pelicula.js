@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       sinopsis: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT // TEXT //
       },
       adultos: {
         type: Sequelize.BOOLEAN
