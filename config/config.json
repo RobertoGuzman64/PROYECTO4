@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "1234",
-    "database": "Videoclub_Geeks",
-    "host": "127.0.0.1",
+    "username": "bb1b84cf2212c2",
+    "password": "4c11c736",
+    "database": "heroku_c99f49544d3a802",
+    "host": "eu-cdbr-west-02.cleardb.net",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "bb1b84cf2212c2",
+    "password": "4c11c736",
+    "database": "heroku_c99f49544d3a802",
+    "host": "eu-cdbr-west-02.cleardb.net",
     "dialect": "mysql"
   }
 }

@@ -16,7 +16,7 @@ router.get('/:id', auth, UsuarioController.verPorId);
 // http://localhost:5000/usuarios/id
 
 // Endpoint de registrar Usuario.
-router.post('/registro', UsuarioController.registraUsuario);
+router.post('/', UsuarioController.registraUsuario);
 // http://localhost:5000/usuarios/registro
 
 // Endpoint de Login de Usuario.
