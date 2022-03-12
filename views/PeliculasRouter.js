@@ -28,4 +28,9 @@ router.delete('/', auth, isAdmin, PeliculasController.borrarTodo);
 router.delete('/:id', auth, isAdmin, PeliculasController.borrarPorId);
 // http://localhost:5000/peliculas/:id
 
+// Endpoint de traernos 60 Peliculas a nuestra base de datos.
+router.post('/traerPeliculas', PeliculasController.traerPeliculas);
+// http://localhost:5000/peliculas/traerPeliculas
+
+
 module.exports = router;
