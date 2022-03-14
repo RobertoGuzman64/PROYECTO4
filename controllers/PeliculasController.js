@@ -1,8 +1,6 @@
 
 const { default: axios } = require("axios");
 const { Pelicula } = require('../models/index');
-// const { Op } = require("sequelize");
-// const { compareSync } = require("bcrypt")
 const PeliculasController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PELICULAS.
@@ -19,7 +17,7 @@ PeliculasController.verTodas = (req, res) => {
 // Función buscar peliculas por titulo de la base de datos.
 PeliculasController.peliculasTitulo = (req, res) => {
     //Búsqueda comparando un campo
-    Pelicula.findOne({ where : { titulo : req.params.titulo }})
+    Pelicula.findAll({ where : { titulo : req.params.titulo }})
     .then(data => {
         res.send(data)
     });

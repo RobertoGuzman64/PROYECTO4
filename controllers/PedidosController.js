@@ -6,6 +6,17 @@ const PedidosController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PEDIDOS.
 
+// Funcion de busqueda de pedidos por ID.
+PedidosController.verPorId = (req, res) => {
+    //Búsqueda buscando una Id
+    Pedido.findAll({
+        where: { usuarioId: req.params.id },
+    })
+    .then(data => {
+        res.send(data)
+    });
+};
+
 // Función de crear pedidos.
 PedidosController.realizarPedidos = (req, res) => {
     let body = req.body;

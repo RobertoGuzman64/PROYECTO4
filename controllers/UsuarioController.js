@@ -62,13 +62,18 @@ UsuarioController.registraUsuario = async (req, res) => {
 
 // Función de editar el Perfil.
 UsuarioController.perfilUsuario = async (req, res) => {
-    // let datos = req.body;
+    let datos = req.body;
+
     let id = req.params.id;
+
     try {
-        Usuario.update(datos, {
+        Usuario.update(
+            req.body,
+            {
             where: {id : id}
         })
         .then(actualizado => {
+            console.log("Electrico", actualizado)
             res.send(actualizado);
         });
     } catch (error) {
@@ -135,7 +140,7 @@ UsuarioController.verTodos = (req, res) => {
 // Funcion de busqueda de un Usuario por ID.
 UsuarioController.verPorId = (req, res) => {
     //Búsqueda buscando una Id
-    Pelicula.findByPk(req.params.id)
+    Usuario.findByPk(req.params.id)
     .then(data => {
         res.send(data)
     });
