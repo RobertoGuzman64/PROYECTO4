@@ -23,6 +23,17 @@ router.get('/', auth, PedidosController.mostrarPedidos);
 router.delete('/:id',auth, PedidosController.borrarPorId);
 // http://localhost:5000/pedidos/:id
 
+///////////////////////////////////
+
+// Endpoint de mostrar los Pedidos de Un Usuario en concreto. USUARIO.
+router.post('/usuario/:id', PedidosController.mostrarPedidosUsuario);
+// http://localhost:5000/pedidos/usuario/:id
+
+// Endpoint de mostrar los Pedidos de Todos los Usuarios. ADMINISTRADOR.
+router.post('/admin', PedidosController.mostrarPedidosAdministrador);
+// http://localhost:5000/pedidos/admin
+
+//////////////////////////////////
 
 
 module.exports = router;

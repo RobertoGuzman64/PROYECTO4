@@ -6,7 +6,7 @@ const PedidosController = {};
 
 //FUNCIONES DEL CONTROLADOR DE PEDIDOS.
 
-// Funcion de busqueda de pedidos por ID.
+// Funcion de busqueda de pedidos por Usuario ID.
 PedidosController.verPorId = (req, res) => {
     //Búsqueda buscando una Id
     Pedido.findAll({
@@ -16,6 +16,36 @@ PedidosController.verPorId = (req, res) => {
         res.send(data)
     });
 };
+
+// Función de mostrar los Pedidos de Un Usuario en concreto. USUARIO
+PedidosController.mostrarPedidosUsuario = async (req,res) => {
+    let id = req.params.id
+    let consulta = `SELECT usuarios.nombre AS nombre, peliculas.titulo AS titulo , peliculas.popularidad AS popularidad, usuarios.nick AS nick, usuarios.email AS email, peliculas.imagen AS imagen
+    FROM usuarios INNER JOIN pedidos 
+    ON usuarios.id = pedidos.usuarioId INNER JOIN peliculas
+    ON peliculas.id = pedidos.peliculaId WHERE usuarios.id = ${id}`;
+    let resultado = await Pedido.sequelize.query(consulta,{
+        type: Pedido.sequelize.QueryTypes.SELECT});
+    if(resultado){
+        res.send(resultado);
+    }
+}
+
+
+// Función de mostrar los Pedidos de Todos los Usuarios. ADMINISTRADOR
+PedidosController.mostrarPedidosAdministrador = async (req,res) => {
+    let consulta = `SELECT usuarios.nombre AS nombre, peliculas.titulo AS titulo , peliculas.popularidad AS popularidad, usuarios.nick AS nick, usuarios.email AS email, peliculas.imagen AS imagen
+    FROM usuarios INNER JOIN pedidos 
+    ON usuarios.id = pedidos.usuarioId INNER JOIN peliculas
+    ON peliculas.id = pedidos.peliculaId;`; 
+    let resultado = await Pedido.sequelize.query(consulta,{
+        type: Pedido.sequelize.QueryTypes.SELECT});
+    if(resultado){
+        res.send(resultado);
+    }
+}
+
+
 
 // Función de crear pedidos.
 PedidosController.realizarPedidos = (req, res) => {

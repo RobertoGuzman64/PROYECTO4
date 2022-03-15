@@ -63,14 +63,11 @@ UsuarioController.registraUsuario = async (req, res) => {
 // Función de editar el Perfil.
 UsuarioController.perfilUsuario = async (req, res) => {
     let datos = req.body;
-
-    let id = req.params.id;
-
     try {
         Usuario.update(
-            req.body,
+            datos,
             {
-            where: {id : id}
+            where: {id : datos.id}
         })
         .then(actualizado => {
             console.log("Electrico", actualizado)
