@@ -17,7 +17,7 @@ PedidosController.verPorId = (req, res) => {
     });
 };
 
-// Función de mostrar los Pedidos de Un Usuario en concreto. USUARIO
+// Función de mostrar los Pedidos de Un Usuario en concreto En crudo. USUARIO
 PedidosController.mostrarPedidosUsuario = async (req,res) => {
     let id = req.params.id
     let consulta = `SELECT usuarios.nombre AS nombre, peliculas.titulo AS titulo , peliculas.popularidad AS popularidad, usuarios.nick AS nick, usuarios.email AS email, peliculas.imagen AS imagen
@@ -31,8 +31,7 @@ PedidosController.mostrarPedidosUsuario = async (req,res) => {
     }
 }
 
-
-// Función de mostrar los Pedidos de Todos los Usuarios. ADMINISTRADOR
+// Función de mostrar los Pedidos de Todos los Usuarios En crudo. ADMINISTRADOR
 PedidosController.mostrarPedidosAdministrador = async (req,res) => {
     let consulta = `SELECT usuarios.nombre AS nombre, peliculas.titulo AS titulo , peliculas.popularidad AS popularidad, usuarios.nick AS nick, usuarios.email AS email, peliculas.imagen AS imagen
     FROM usuarios INNER JOIN pedidos 
@@ -44,8 +43,6 @@ PedidosController.mostrarPedidosAdministrador = async (req,res) => {
         res.send(resultado);
     }
 }
-
-
 
 // Función de crear pedidos.
 PedidosController.realizarPedidos = (req, res) => {

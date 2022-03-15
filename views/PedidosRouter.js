@@ -30,7 +30,7 @@ router.post('/usuario/:id', PedidosController.mostrarPedidosUsuario);
 // http://localhost:5000/pedidos/usuario/:id
 
 // Endpoint de mostrar los Pedidos de Todos los Usuarios. ADMINISTRADOR.
-router.post('/admin', PedidosController.mostrarPedidosAdministrador);
+router.post('/admin', auth, isAdmin, PedidosController.mostrarPedidosAdministrador);
 // http://localhost:5000/pedidos/admin
 
 //////////////////////////////////
