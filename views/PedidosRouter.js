@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require("../middlewares/auth");
 const PedidosController = require('../controllers/PedidosController');
-
+const isAdmin = require("../middlewares/isAdmin");
 //AQUI ES DONDE CREAMOS LOS ENDPOINTS DE LAS FUNCIONES DE PEDIDOSCONTROLLER.
 
 
