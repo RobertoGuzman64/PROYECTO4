@@ -16,11 +16,11 @@ router.post('/', auth, PedidosController.realizarPedidos);
 ////http://localhost:5000/pedidos
 
 // Endpoint de mostrar los Pedidos realizados.
-router.get('/', auth, PedidosController.mostrarPedidos);
+router.get('/', auth, isAdmin, PedidosController.mostrarPedidos);
 ////http://localhost:5000/pedidos
 
 // Endpoint de eliminar Pedidos por ID.
-router.delete('/:id',auth, PedidosController.borrarPorId);
+router.delete('/:id',auth, isAdmin, PedidosController.borrarPorId);
 // http://localhost:5000/pedidos/:id
 
 ///////////////////////////////////
