@@ -8,7 +8,7 @@ const UsuarioController = require('../controllers/UsuarioController');
 //AQUI ES DONDE CREAMOS LAS RUTAS DE LAS FUNCIONES DE USUARIOCONTROLLER.
 
 // Endpoint de lista de todos los Usuarios.
-router.get('/admin', auth, isAdmin ,UsuarioController.verTodos);
+router.get('/', auth, UsuarioController.verTodos);
 // http://localhost:5000/usuarios/
 
 // Endpoint de registrar Usuario.
